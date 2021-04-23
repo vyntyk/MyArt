@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Моё Произведение</string>
     <string name="title_home">Домой</string>
-    <string name="title_notifications">Уведомдения</string>
     <string name="title_dashboard">Панель</string>
+    <string name="title_notifications">Уведомления</string>
 </resources>
