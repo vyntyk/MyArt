@@ -4,26 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myart.R;
 
+import org.jetbrains.annotations.NotNull;
+
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+    private Object viewHolder;
+     private FrameLayout container;
+    private ConstraintLayout constraintLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
+        final TextView textView;
+        textView = root.findViewById(R.id.text_dashboard);
+        container = container.findViewById(R.id.fragment_container_view_tag);
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -32,4 +41,10 @@ public class DashboardFragment extends Fragment {
         });
         return root;
     }
+
+    private FragmentManager getSupportFragmentManager() {
+        return null;
+    }
+
+
 }
