@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         animalNames.add("Camel");
         animalNames.add("Sheep");
         animalNames.add("Goat");
+        for (int i = 0; i <40 ; i++) {
+            animalNames.add("Horse " +i);
+        }
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
