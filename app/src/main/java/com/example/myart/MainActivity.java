@@ -15,10 +15,14 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myart.repository.Repository;
+import com.example.myart.repository.impl.RepositoryImpl;
 import com.example.myart.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener{
     private FrameLayout container;
@@ -43,20 +47,13 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
-        for (int i = 0; i <40 ; i++) {
-            animalNames.add("Horse " +i);
-        }
+        Repository<String> repository = new RepositoryImpl();
+        List<String> data = repository.getData().stream().collect(Collectors.toList());
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.byNameAnimal);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, animalNames);
+        adapter = new MyRecyclerViewAdapter(this, data);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
