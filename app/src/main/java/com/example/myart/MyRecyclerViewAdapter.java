@@ -22,7 +22,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+        View view = mInflater.inflate(R.layout.fragment_home, parent, false);
         return new ViewHolder(view);
     }
     // binds the data to the TextView in each row
@@ -43,7 +43,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.byNameAnimal);
+            myTextView = itemView.findViewById(R.id.recycler);
             itemView.setOnClickListener(this);
         }
         @Override

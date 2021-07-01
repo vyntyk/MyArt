@@ -24,15 +24,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener{
+public class MainActivity extends AppCompatActivity {
     private FrameLayout container;
     private ConstraintLayout constraintLayout;
     MyRecyclerViewAdapter adapter;
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +44,5 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Repository<String> repository = new RepositoryImpl();
-        List<String> data = repository.getData().stream().collect(Collectors.toList());
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.byNameAnimal);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, data);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-
-
     }
-
-
 }
