@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.Item
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,10 +45,10 @@ public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.Item
         Repository<String> repository = new RepositoryImpl();
         List<String> data = repository.getData().stream().collect(Collectors.toList());
 
-        RecyclerView recyclerView = recyclerView.findViewById(R.id.recycler);
-        //recyclerView.setLayoutManager(new ConstraintLayoutManager(this));
-        //adapter = new MyRecyclerViewAdapter(this, data);
-        //adapter.setClickListener(this);
+        RecyclerView recyclerView = root.findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new MyRecyclerViewAdapter(getContext(), data);
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
         return root;
