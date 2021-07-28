@@ -3,7 +3,6 @@
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
     </style>
-
     <!-- Base application theme. -->
     <style name="Theme.MyArt" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->

@@ -1,5 +1,4 @@
 package com.example.myart.repository.impl;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -12,7 +11,7 @@ public class TaskImpl {
           con.setDoOutput(true);
           con.setRequestMethod("GET");
           con.setUseCaches(true);
-          con.setRequestProperty("Content-Type", "application/json");
+          con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
           StringBuilder ab = new StringBuilder();
           if (HttpURLConnection.HTTP_OK == con.getResponseCode()) {
@@ -30,5 +29,7 @@ public class TaskImpl {
 
      }
 }
+
+
 
 
