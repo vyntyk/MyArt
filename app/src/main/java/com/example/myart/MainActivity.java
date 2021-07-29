@@ -36,57 +36,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-
-                    URL url = null;
-                    try {
-                        url = new URL("https://api.themoviedb.org/3/movie/550?api_key=b25438f366b7d3b21111047f0342c590");
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    HttpURLConnection connection = null;
-                    try {
-                        connection = (HttpURLConnection) url.openConnection();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    connection.setDoOutput(true);
-                    try {
-                        connection.setRequestMethod("GET");
-                    } catch (ProtocolException e) {
-                        e.printStackTrace();
-                    }
-                    connection.setUseCaches(true);
-                    connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-
-                    StringBuilder ab = new StringBuilder();
-                    try {
-                        if (HttpURLConnection.HTTP_OK == connection.getResponseCode()) {
-                            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
-
-                            String line;
-                            while ((line = in.readLine()) != null) {
-                                ab.append(line);
-                                ab.append("\n");
-                            }
-                            System.out.println(ab.toString());
-                        } else {
-                            try {
-                                System.out.println("fail: " + connection.getResponseCode() + connection.getResponseMessage());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
-        }
     }
+}
