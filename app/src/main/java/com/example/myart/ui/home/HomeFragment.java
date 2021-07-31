@@ -55,8 +55,7 @@ public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.Item
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view,
-                              @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 }
