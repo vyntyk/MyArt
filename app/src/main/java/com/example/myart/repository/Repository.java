@@ -5,4 +5,5 @@ import java.util.Collection;
 public interface Repository<T> {
 
     Collection<T> getData();
+
 }
