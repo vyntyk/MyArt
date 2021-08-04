@@ -9,7 +9,7 @@ public class ApiUtils {
     public static final String api_key = "b25438f366b7d3b21111047f0342c590";
     private static Retrofit retrofit = null;
 
-    public static Retrofit getRetrofit() {
+    public static Service getApiService() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
@@ -18,12 +18,12 @@ public class ApiUtils {
                 .addInterceptor(interceptor)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/movie/550")
+        return new Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
-                .build();
-        return retrofit;
+                .build()
+                .create(Service.class);
     }
 }
 

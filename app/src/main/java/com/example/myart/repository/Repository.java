@@ -1,9 +1,12 @@
 package com.example.myart.repository;
 
+import com.example.myart.Genre;
+import com.example.myart.ui.home.HomeFragment;
+
 import java.util.Collection;
+import java.util.List;
 
-public interface Repository<T> {
+public interface Repository {
 
-    Collection<T> getData();
-
+    void getGenre(HomeFragment.SetData lambda);
 }

@@ -7,16 +7,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
 
-    private List<String> mData;
+    private List<Genre> mData = new ArrayList<>();
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
-    public MyRecyclerViewAdapter(List<String> data) {
+    public void setData(List<Genre> data) {
         this.mData = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -28,8 +30,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        Genre genre = mData.get(position);
+        holder.myTextView.setText(genre.getName() + " " + genre.getId());
     }
 
     @Override
@@ -55,7 +57,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // convenience method for getting data at click position
-    public String getItem(int id) {
+    public Genre getItem(int id) {
         return mData.get(id);
     }
 

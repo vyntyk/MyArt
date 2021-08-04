@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myart.Genre;
 import com.example.myart.MyRecyclerViewAdapter;
 import com.example.myart.R;
 import com.example.myart.repository.Repository;
@@ -37,9 +39,11 @@ public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.Item
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Repository<String> repository = new RepositoryImpl();
-        List<String> data = repository.getData().stream().collect(Collectors.toList());
-        adapter = new MyRecyclerViewAdapter(data);
+        Repository repository = new RepositoryImpl();
+        adapter = new MyRecyclerViewAdapter();
+
+        SetData lambda = (List<Genre> data) -> adapter.setData(data);
+        repository.getGenre(lambda);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,5 +61,9 @@ public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.Item
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public interface SetData {
+        void setData(List<Genre> data);
     }
 }
