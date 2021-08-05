@@ -1,29 +1,27 @@
-package com.example.myart;
+package com.example.myart
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Retrofit
+import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.OkHttpClient
+import retrofit2.converter.gson.GsonConverterFactory
 
-public class ApiUtils {
-    public static final String api_key = "b25438f366b7d3b21111047f0342c590";
-    private static Retrofit retrofit = null;
 
-    public static Service getApiService() {
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
-
-        OkHttpClient client = new OkHttpClient.Builder()
+object ApiUtils {
+    const val api_key = "b25438f366b7d3b21111047f0342c590"
+    private val retrofit: Retrofit? = null
+    val apiService: Service
+        get() {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level =
+                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            val client = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .build();
-
-        return new Retrofit.Builder()
+                .build()
+            return Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
-                .create(Service.class);
-    }
+                .create(Service::class.java)
+        }
 }
-

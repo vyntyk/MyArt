@@ -1,287 +1,107 @@
-package com.example.myart;
+package com.example.myart
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
+import com.google.gson.annotations.SerializedName
+import com.google.gson.annotations.Expose
 
 //@Generated("jsonschema2pojo")
-public class Example {
-
+class Example {
     @SerializedName("adult")
     @Expose
-    private Boolean adult;
+    var adult: Boolean? = null
+
     @SerializedName("backdrop_path")
     @Expose
-    private String backdropPath;
+    var backdropPath: String? = null
+
     @SerializedName("belongs_to_collection")
     @Expose
-    private Object belongsToCollection;
+    var belongsToCollection: Any? = null
+
     @SerializedName("budget")
     @Expose
-    private Integer budget;
+    var budget: Int? = null
+
     @SerializedName("genres")
     @Expose
-    private List<Genre> genres = null;
+    var genres: List<Genre>? = null
+
     @SerializedName("homepage")
     @Expose
-    private String homepage;
+    var homepage: String? = null
+
     @SerializedName("id")
     @Expose
-    private Integer id;
+    var id: Int? = null
+
     @SerializedName("imdb_id")
     @Expose
-    private String imdbId;
+    var imdbId: String? = null
+
     @SerializedName("original_language")
     @Expose
-    private String originalLanguage;
+    var originalLanguage: String? = null
+
     @SerializedName("original_title")
     @Expose
-    private String originalTitle;
+    var originalTitle: String? = null
+
     @SerializedName("overview")
     @Expose
-    private String overview;
+    var overview: String? = null
+
     @SerializedName("popularity")
     @Expose
-    private Double popularity;
+    var popularity: Double? = null
+
     @SerializedName("poster_path")
     @Expose
-    private String posterPath;
+    var posterPath: String? = null
+
     @SerializedName("production_companies")
     @Expose
-    private List<ProductionCompany> productionCompanies = null;
+    var productionCompanies: List<ProductionCompany>? = null
+
     @SerializedName("production_countries")
     @Expose
-    private List<ProductionCountry> productionCountries = null;
+    var productionCountries: List<ProductionCountry>? = null
+
     @SerializedName("release_date")
     @Expose
-    private String releaseDate;
+    var releaseDate: String? = null
+
     @SerializedName("revenue")
     @Expose
-    private Integer revenue;
+    var revenue: Int? = null
+
     @SerializedName("runtime")
     @Expose
-    private Integer runtime;
+    var runtime: Int? = null
+
     @SerializedName("spoken_languages")
     @Expose
-    private List<SpokenLanguage> spokenLanguages = null;
+    var spokenLanguages: List<SpokenLanguage>? = null
+
     @SerializedName("status")
     @Expose
-    private String status;
+    var status: String? = null
+
     @SerializedName("tagline")
     @Expose
-    private String tagline;
+    var tagline: String? = null
+
     @SerializedName("title")
     @Expose
-    private String title;
+    var title: String? = null
+
     @SerializedName("video")
     @Expose
-    private Boolean video;
+    var video: Boolean? = null
+
     @SerializedName("vote_average")
     @Expose
-    private Double voteAverage;
+    var voteAverage: Double? = null
+
     @SerializedName("vote_count")
     @Expose
-    private Integer voteCount;
-
-    public Boolean getAdult() {
-        return adult;
-    }
-
-    public void setAdult(Boolean adult) {
-        this.adult = adult;
-    }
-
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
-    public Object getBelongsToCollection() {
-        return belongsToCollection;
-    }
-
-    public void setBelongsToCollection(Object belongsToCollection) {
-        this.belongsToCollection = belongsToCollection;
-    }
-
-    public Integer getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Integer budget) {
-        this.budget = budget;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
-
-    public String getHomepage() {
-        return homepage;
-    }
-
-    public void setHomepage(String homepage) {
-        this.homepage = homepage;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getImdbId() {
-        return imdbId;
-    }
-
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
-    }
-
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
-
-    public String getOverview() {
-        return overview;
-    }
-
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
-
-    public Double getPopularity() {
-        return popularity;
-    }
-
-    public void setPopularity(Double popularity) {
-        this.popularity = popularity;
-    }
-
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    public List<ProductionCompany> getProductionCompanies() {
-        return productionCompanies;
-    }
-
-    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-        this.productionCompanies = productionCompanies;
-    }
-
-    public List<ProductionCountry> getProductionCountries() {
-        return productionCountries;
-    }
-
-    public void setProductionCountries(List<ProductionCountry> productionCountries) {
-        this.productionCountries = productionCountries;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public Integer getRevenue() {
-        return revenue;
-    }
-
-    public void setRevenue(Integer revenue) {
-        this.revenue = revenue;
-    }
-
-    public Integer getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(Integer runtime) {
-        this.runtime = runtime;
-    }
-
-    public List<SpokenLanguage> getSpokenLanguages() {
-        return spokenLanguages;
-    }
-
-    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
-        this.spokenLanguages = spokenLanguages;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Boolean getVideo() {
-        return video;
-    }
-
-    public void setVideo(Boolean video) {
-        this.video = video;
-    }
-
-    public Double getVoteAverage() {
-        return voteAverage;
-    }
-
-    public void setVoteAverage(Double voteAverage) {
-        this.voteAverage = voteAverage;
-    }
-
-    public Integer getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
-    }
-
+    var voteCount: Int? = null
 }

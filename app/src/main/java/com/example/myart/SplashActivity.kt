@@ -1,30 +1,25 @@
-package com.example.myart;
+package com.example.myart
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.os.Handler
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-
-public class SplashActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-       // getSupportActionBar().hide();// скрытие ActionBar
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //Этот метод будет выполнен по истечении таймера.
-                // Начните свою основную деятельность в приложении
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
-                // закрыть активити
-                finish();
-            }
-        }, 3000);
+class SplashActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
+        // getSupportActionBar().hide();// скрытие ActionBar
+        Handler().postDelayed({ //Этот метод будет выполнен по истечении таймера.
+            // Начните свою основную деятельность в приложении
+            val i = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(i)
+            // закрыть активити
+            finish()
+        }, 3000)
     }
-    protected void OnBackPressed(){
-        finish();
+
+    protected fun OnBackPressed() {
+        finish()
     }
 }

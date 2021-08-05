@@ -1,73 +1,65 @@
-package com.example.myart;
+package com.example.myart
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import org.jetbrains.annotations.NotNull;
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myart.MyRecyclerViewAdapter.MyViewHolder
+import com.example.myart.Genre
+import com.example.myart.MyRecyclerViewAdapter.ItemClickListener
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.view.View
+import com.example.myart.R
+import android.widget.TextView
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
-
-    private List<Genre> mData = new ArrayList<>();
-    private ItemClickListener mClickListener;
-
-    public void setData(List<Genre> data) {
-        this.mData = data;
-        notifyDataSetChanged();
+class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
+    private var mData: List<Genre> = ArrayList()
+    private var mClickListener: ItemClickListener? = null
+    fun setData(data: List<Genre>) {
+        mData = data
+        notifyDataSetChanged()
     }
 
-    @NonNull
-    @NotNull
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_list_item, parent, false));
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.view_list_item, parent, false)
+        )
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
-        Genre genre = mData.get(position);
-        holder.myTextView.setText(genre.getName() + " " + genre.getId());
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val genre = mData[position]
+        holder.myTextView.text = genre.name + " " + genre.id
     }
 
-    @Override
-    public int getItemCount() {
-        return mData.size();
+    override fun getItemCount(): Int {
+        return mData.size
     }
 
     // stores and recycles views as they are scrolled off screen
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        public TextView myTextView;
-
-        MyViewHolder(View itemView) {
-            super(itemView);
-            myTextView = itemView.findViewById(R.id.title);
-            itemView.setOnClickListener(this);
+    inner class MyViewHolder internal constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var myTextView: TextView
+        override fun onClick(view: View) {
+            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        init {
+            myTextView = itemView.findViewById(R.id.title)
+            itemView.setOnClickListener(this)
         }
     }
 
     // convenience method for getting data at click position
-    public Genre getItem(int id) {
-        return mData.get(id);
+    fun getItem(id: Int): Genre {
+        return mData[id]
     }
 
     //    allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
+    fun setClickListener(itemClickListener: ItemClickListener?) {
+        mClickListener = itemClickListener
     }
 
     // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
+    interface ItemClickListener {
+        fun onItemClick(view: View?, position: Int)
     }
 }

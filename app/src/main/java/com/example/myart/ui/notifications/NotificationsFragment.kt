@@ -1,33 +1,48 @@
-package com.example.myart.ui.notifications;
+package com.example.myart.ui.notifications
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import com.example.myart.ui.dashboard.DashboardViewModel
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
+import com.example.myart.R
+import android.widget.TextView
+import com.example.myart.ui.notifications.NotificationsViewModel
+import com.example.myart.ui.home.HomeFragment.SetData
+import retrofit2.Retrofit
+import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.OkHttpClient
+import retrofit2.converter.gson.GsonConverterFactory
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.NavController
+import androidx.navigation.ui.NavigationUI
+import android.content.Intent
+import android.view.View
+import androidx.fragment.app.Fragment
+import com.example.myart.MainActivity
+import com.google.gson.annotations.SerializedName
+import com.google.gson.annotations.Expose
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.myart.R;
-
-public class NotificationsFragment extends Fragment {
-
-    private NotificationsViewModel notificationsViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = view.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return view;
+class NotificationsFragment : Fragment() {
+    private var notificationsViewModel: NotificationsViewModel? = null
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        notificationsViewModel = ViewModelProvider(this).get(
+            NotificationsViewModel::class.java
+        )
+        val view = inflater.inflate(R.layout.fragment_notifications, container, false)
+        val textView = view.findViewById<TextView>(R.id.text_notifications)
+        notificationsViewModel.getText().observe(viewLifecycleOwner, { s -> textView.text = s })
+        return view
     }
 }

@@ -1,69 +1,67 @@
-package com.example.myart.ui.home;
+package com.example.myart.ui.home
+import com.example.myart.MyRecyclerViewAdapter.ItemClickListener
+import com.example.myart.ui.home.HomeViewModel
+import com.example.myart.MyRecyclerViewAdapter
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.Toast
+import android.os.Bundle
+import com.example.myart.ui.home.HomeFragment.SetData
+import com.example.myart.Genre
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.myart.R
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myart.repository.Repository
+import com.example.myart.repository.impl.RepositoryImpl
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myart.Genre;
-import com.example.myart.MyRecyclerViewAdapter;
-import com.example.myart.R;
-import com.example.myart.repository.Repository;
-import com.example.myart.repository.impl.RepositoryImpl;
-import org.jetbrains.annotations.NotNull;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class HomeFragment extends Fragment implements MyRecyclerViewAdapter.ItemClickListener{
-
-    private HomeViewModel homeViewModel;
-    private MyRecyclerViewAdapter adapter;
-    private FrameLayout container;
-    private ConstraintLayout constraintLayout;
-
-    @Override
-    public void onItemClick(View view, int position) {
-       Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) +
-               " on row number " + position, Toast.LENGTH_SHORT).show();
+class HomeFragment : Fragment(), ItemClickListener {
+    private var homeViewModel: HomeViewModel? = null
+    private var adapter: MyRecyclerViewAdapter? = null
+    private val container: FrameLayout? = null
+    private val constraintLayout: ConstraintLayout? = null
+    override fun onItemClick(view: View?, position: Int) {
+        Toast.makeText(
+            context, "You clicked " + adapter!!.getItem(position) +
+                    " on row number " + position, Toast.LENGTH_SHORT
+        ).show()
     }
 
-    @Override
-    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Repository repository = new RepositoryImpl();
-        adapter = new MyRecyclerViewAdapter();
-
-        SetData lambda = (List<Genre> data) -> adapter.setData(data);
-        repository.getGenre(lambda);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val repository: Repository = RepositoryImpl()
+                adapter = MyRecyclerViewAdapter()
+        val lambda = object : SetData {
+            override fun setData(data: List<Genre?>?) {
+                adapter!!.setData(data as List<Genre>)
+            }
+        }
+        repository.getGenre(lambda)
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        RecyclerView recyclerView = root.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
-        adapter.setClickListener(this);
-
-        return root;
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val recyclerView: RecyclerView = root.findViewById(R.id.recycler)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+        adapter!!.setClickListener(this)
+        return root
     }
 
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
-    public interface SetData {
-        void setData(List<Genre> data);
+    interface SetData {
+        fun setData(data: List<Genre?>?)
     }
 }

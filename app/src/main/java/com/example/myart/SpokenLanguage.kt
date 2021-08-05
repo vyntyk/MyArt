@@ -1,43 +1,18 @@
-package com.example.myart;
+package com.example.myart
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName
+import com.google.gson.annotations.Expose
 
-//@Generated("jsonschema2pojo")
-public class SpokenLanguage {
-
+class SpokenLanguage {
     @SerializedName("english_name")
     @Expose
-    private String englishName;
+    var englishName: String? = null
+
     @SerializedName("iso_639_1")
     @Expose
-    private String iso6391;
+    var iso6391: String? = null
+
     @SerializedName("name")
     @Expose
-    private String name;
-
-    public String getEnglishName() {
-        return englishName;
-    }
-
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
-    }
-
-    public String getIso6391() {
-        return iso6391;
-    }
-
-    public void setIso6391(String iso6391) {
-        this.iso6391 = iso6391;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    var name: String? = null
 }
