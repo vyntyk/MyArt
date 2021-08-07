@@ -1,34 +1,15 @@
 package com.example.myart.ui.dashboard
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.LiveData
-import com.example.myart.ui.dashboard.DashboardViewModel
-import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myart.R
-import android.widget.TextView
-import com.example.myart.ui.notifications.NotificationsViewModel
-import com.example.myart.ui.home.HomeFragment.SetData
-import retrofit2.Retrofit
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.OkHttpClient
-import retrofit2.converter.gson.GsonConverterFactory
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.NavController
-import androidx.navigation.ui.NavigationUI
-import android.content.Intent
-import android.view.View
-import androidx.fragment.app.Fragment
-import com.example.myart.MainActivity
-import com.google.gson.annotations.SerializedName
-import com.google.gson.annotations.Expose
 
 class DashboardFragment : Fragment() {
     private var dashboardViewModel: DashboardViewModel? = null

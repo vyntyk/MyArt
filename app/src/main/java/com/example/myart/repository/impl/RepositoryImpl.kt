@@ -4,8 +4,8 @@ import android.content.Context
 import android.os.Handler
 import android.util.Log
 import com.example.myart.ApiUtils
-import com.example.myart.repository.GenreResponse
 import com.example.myart.Genre
+import com.example.myart.repository.GenreResponse
 import com.example.myart.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback

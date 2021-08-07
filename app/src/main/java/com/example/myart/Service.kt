@@ -1,8 +1,8 @@
 package com.example.myart
 
-import retrofit2.http.GET
 import com.example.myart.repository.GenreResponse
 import retrofit2.Call
+import retrofit2.http.GET
 import retrofit2.http.Headers
 
 interface Service {
