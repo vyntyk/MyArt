@@ -4,5 +4,5 @@ import com.example.myart.Genre
 import java.util.ArrayList
 
 class GenreResponse {
-    var genres: List<Genre> = ArrayList()
+    var genres: MutableList<Genre> = ArrayList()
 }

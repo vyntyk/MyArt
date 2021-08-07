@@ -1,20 +1,18 @@
 package com.example.myart
 
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myart.MyRecyclerViewAdapter.MyViewHolder
-import com.example.myart.Genre
-import com.example.myart.MyRecyclerViewAdapter.ItemClickListener
-import android.view.ViewGroup
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import com.example.myart.R
+import android.view.ViewGroup
 import android.widget.TextView
-import java.util.ArrayList
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myart.MyRecyclerViewAdapter.MyViewHolder
 
 class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
-    private var mData: List<Genre> = ArrayList()
+    private var mData: MutableList<Genre> = mutableListOf()
     private var mClickListener: ItemClickListener? = null
-    fun setData(data: List<Genre>) {
+
+    fun setData(data: MutableList<Genre>) {
         mData = data
         notifyDataSetChanged()
     }
@@ -31,6 +29,7 @@ class MyRecyclerViewAdapter : RecyclerView.Adapter<MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
+        Log.d("TAG", "mData = ${mData}")
         return mData.size
     }
 

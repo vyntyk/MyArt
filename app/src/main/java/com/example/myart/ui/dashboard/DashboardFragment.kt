@@ -43,7 +43,6 @@ class DashboardFragment : Fragment() {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val textView = root.findViewById<TextView>(R.id.text_dashboard)
-            //dashboardViewModel.getText().observe(viewLifecycleOwner, { s -> textView.text = s })
         return root
     }
 }

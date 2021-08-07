@@ -1,7 +1,8 @@
 package com.example.myart.repository
 
-import com.example.myart.ui.home.HomeFragment.SetData
+import android.content.Context
+import com.example.myart.Genre
 
 interface Repository {
-    fun getGenre(lambda: SetData?)
+    fun getGenre(context: Context, data: (MutableList<Genre>) -> Unit)
 }
